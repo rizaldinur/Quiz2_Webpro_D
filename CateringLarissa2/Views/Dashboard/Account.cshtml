@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["Title"] = "Home Page";
+    var usr = await UserManager.GetUserAsync(User);
+    var email = usr.Email;
+    var name = usr.UserName;
+    var phone = usr.PhoneNumber;
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Your Account Info</h1>
+
+</div>
+
+  <div class="card mb-3 bg-light">
+    <div class="card-body">
+      <h5 class="card-title">Username : @name</h5>
+      <h5 class="card-title">Email : @email  </h5>
+      <h5 class="card-title">Phone Number : @phone  </h5>
+
+      <a class="nav-link active" asp-area="Identity" asp-page="/Account/Manage/Index">
+          <button class="btn btn-info active" type="submit" >Manage Account</i></button>
+      </a>
+      
+    </div>
+  </div>          

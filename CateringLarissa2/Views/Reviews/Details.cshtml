@@ -1,0 +1,22 @@
+﻿@model CateringLarissa2.Models.Review
+
+@{
+    ViewData["Title"] = "Details";
+}
+<script src="https://kit.fontawesome.com/69d12dedb8.js" crossorigin="anonymous"></script>
+<h1>Details</h1>
+
+ <div class="card mb-3 bg-light">
+    <div class="card-body">
+      <h5 class="card-title">Title : @Html.DisplayFor(modelItem => Model.title)</h5>
+      <h5 class="card-title">Stars : @Html.DisplayFor(modelItem => Model.rating) <i class="fa fa-star" aria-hidden="true"></i></h5>
+      <h5 class="card-title">Description : @Html.DisplayFor(modelItem => Model.description)</h5>
+      <p class="card-text"><small class="text-muted">Created by : @Html.DisplayFor(modelItem => Model.user)</small></p>
+       <p class="card-text"><small class="text-muted">Created at : @Html.DisplayFor(modelItem => Model.CreatedDate)</small></p>
+    </div>
+  </div>
+<div class="btn-toolbar ">
+    <a asp-action="Index">
+        <button class="btn btn-secondary active md-1" type="submit" >Back to list</i></button>
+    </a>
+</div>

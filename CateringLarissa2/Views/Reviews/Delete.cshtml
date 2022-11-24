@@ -1,0 +1,34 @@
+﻿@model CateringLarissa2.Models.Review
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br/>
+<div>
+    <a asp-action="Index">
+        <button class="btn btn-secondary active" type="submit" >Back to list</i></button>
+    </a>
+</div>
+<br/>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div>
+   
+ <div class="card mb-3 bg-light">
+    <div class="card-body">
+      <h5 class="card-title">Title : @Html.DisplayFor(modelItem => Model.title)</h5>
+      <h5 class="card-title">Stars : @Html.DisplayFor(modelItem => Model.rating) <i class="fa fa-star" aria-hidden="true"></i></h5>
+      <h5 class="card-title">Description : @Html.DisplayFor(modelItem => Model.description)</h5>
+      <p class="card-text"><small class="text-muted">Created by : @Html.DisplayFor(modelItem => Model.user)</small></p>
+       <p class="card-text"><small class="text-muted">Created at : @Html.DisplayFor(modelItem => Model.CreatedDate)</small></p>
+    </div>
+  </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        
+    </form>
+    
+</div>

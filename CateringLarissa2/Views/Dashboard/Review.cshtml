@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CateringLarissa2.Models.Review>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewData["Title"] = "Home Page";
+    var username = @Context.User.Identity.Name;
+}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Your Reviews</h1>
+
+</div>
+
+@foreach (var item in Model) {
+    var var2 = item.user;
+    @if (var2 == username){
+    <div class="card mb-3 bg-light">
+    <div class="card-body">
+      <h5 class="card-title">@Html.DisplayFor(modelItem => item.title)</h5>
+      <h6 class="card-title"> @Html.DisplayFor(modelItem => item.rating) <i class="fa fa-star" aria-hidden="true"></i>  </h6>
+      <p class="card-text"><small class="text-muted">By @Html.DisplayFor(modelItem => item.user)</small></p>
+     
+          <div class="btn-toolbar ">
+            <a asp-controller="Reviews" asp-action="Details" asp-route-id="@item.id">
+                <button class="btn btn-primary mx-1" type="submit" ><i class="fas fa-info-circle"></i></button>
+            </a> 
+            
+            
+                <a asp-controller="Reviews" asp-action="Delete" asp-route-id="@item.id">
+                    <button class="btn btn-danger mx-1" type="submit"  ><i class="fas fa-trash-alt"></i></button>
+                </a>
+                <a  asp-controller="Reviews" asp-action="Edit" asp-route-id="@item.id">
+                    <button class="btn btn-info mx-1 active" type="submit" ><i class="fas fa-edit"></i></button>
+            </a> 
+            
+</div>
+            
+
+        
+    </div>
+  </div>
+  }
+  }

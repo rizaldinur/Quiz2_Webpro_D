@@ -1,0 +1,52 @@
+﻿@model CateringLarissa2.Models.Review
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<br/>
+<div>
+    <a asp-action="Index">
+        <button class="btn btn-secondary active" type="submit" >Back to list</i></button>
+    </a>
+</div>
+<br/>
+
+<h1>Edit</h1>
+
+<h4>Edit your existing review.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 d-flex flex-row">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="title" class="control-label">Title</label>
+                <input asp-for="title" class="form-control" />
+                <span asp-validation-for="title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="description" class="control-label">Description</label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="rating" class="control-label">Rating</label>
+                <input asp-for="rating" class="form-control" />
+                <span asp-validation-for="rating" class="text-danger"></span>
+            </div>
+            <br/>
+            <input type="hidden" asp-for="user" value="@Model.user" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CateringLarissa2.Models.Review>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+    var username = @Context.User.Identity.Name;
+}
+
+ <div class="row ">
+    <div class="col-md-6">
+        <form asp-controller="Reviews" asp-action="Search" method="get">
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" placeholder="Search" name="SearchString" aria-label="search" aria-describedby="button-addon2">
+                <button class="btn btn-danger" type="submit" >Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-md-6">
+        <form asp-controller="Reviews" asp-action="Filter" method="get">
+            <div class="input-group mb-4">
+                <input type="text" class="form-control" placeholder="Filter by username" name="SearchString2" aria-label="search" aria-describedby="button-addon2">
+                <button class="btn btn-danger" type="submit" >Filter</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="btn-toolbar ">
+@if (SignInManager.IsSignedIn(User)){
+    <p>
+    <a asp-action="Create">
+        <button class="btn btn-success mx-1" type="submit" >Make a Review</button>
+    </a>
+    </p>
+}
+<div class="dropdown mb-5">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Sort By 
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      
+      <li><a class="dropdown-item" asp-action="Stars">Lowest rated</a></li>
+      <li><a class="dropdown-item" asp-action="Stars2">Highest rated</a></li>
+      <li><a class="dropdown-item" asp-action="dateold">Oldest</a></li>
+      <li><a class="dropdown-item" asp-action="datenew">Newest</a></li>
+    </ul>
+  </div>
+  </div>
+@foreach (var item in Model) {
+    var var2 = item.user;
+    <div class="card mb-3 bg-light">
+    <div class="card-body">
+      <h5 class="card-title">@Html.DisplayFor(modelItem => item.title)</h5>
+      <h6 class="card-title"> @Html.DisplayFor(modelItem => item.rating) <i class="fa fa-star" aria-hidden="true"></i>  </h6>
+      <p class="card-text"><small class="text-muted">By @Html.DisplayFor(modelItem => item.user)</small></p>
+     
+          <div class="btn-toolbar ">
+            <a asp-action="Details" asp-route-id="@item.id">
+                <button class="btn btn-primary mx-1" type="submit" ><i class="fas fa-info-circle"></i></button>
+            </a> 
+            @if (var2 == username || username=="Admin")
+            {
+                <a asp-action="Delete" asp-route-id="@item.id">
+                    <button class="btn btn-danger mx-1" type="submit"  ><i class="fas fa-trash-alt"></i></button>
+                </a>
+                <a asp-action="Edit" asp-route-id="@item.id">
+                    <button class="btn btn-info mx-1 active" type="submit" ><i class="fas fa-edit"></i></button>
+            </a> 
+            }
+</div>
+            
+
+        
+    </div>
+  </div>
+  }

@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+   
+    <li class="nav-item dropdown">
+              <a class="nav-link text-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Welcome back, @User.Identity?.Name! <i class="fas fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                    <a class="nav-link text-dark " asp-area="" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-user-circle"></i> My Dashboard </a>
+                    </li>
+                
+                <li>
+                    <hr class="dropdown-divider"></li>
+                <li>
+                  <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button  type="submit" class="nav-link btn btn-link text-dark " color: black ><i class="fas fa-sign-out-alt"></i> Logout </button>
+                   </form>
+                </li>
+              </ul>
+            </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-black" asp-area="Identity" asp-page="/Account/Login">Login <i class="fas fa-sign-in-alt"></i>
+            
+        
+-        
+     </a>
+    </li>
+}
+</ul>

@@ -1,0 +1,31 @@
+﻿
+
+  h1 {
+    margin-top: 1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+  
+
+
+
+.about {
+    margin-top: 2em;
+    text-align: center;
+    font-size: 1.4em;
+    vertical-align: middle;
+}
+
+.about-logo {
+    text-align: center;
+}
+
+    .about-logo img {
+        width: 200px;
+    }
+
+.contact {
+    margin-top: 2em;
+}
+
